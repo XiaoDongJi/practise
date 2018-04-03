@@ -1,18 +1,32 @@
 package com.cckeep.jdk.threadpool;
 
+import java.util.concurrent.*;
+
 /**
- * <p>TODO</p>
- * <p>
- * <PRE>
- * <BR>	修改记录
- * <BR>-----------------------------------------------
- * <BR>	修改日期			修改人			修改内容
- * </PRE>
- *
- * @author jixd
- * @version 1.0
- * @Date Created in 2018年04月03日 11:56
- * @since 1.0
+ * 自定义线程池
  */
 public class ThreadPoolEx {
+
+
+    private final ThreadPoolExecutor threadPoll = new ThreadPoolExecutor(5,5,0L, TimeUnit.MILLISECONDS,new LinkedBlockingDeque<Runnable>(),
+                                            Executors.defaultThreadFactory(),new ThreadPoolExecutor.DiscardPolicy());
+    private final CountDownLatch latch = new CountDownLatch(10);
+
+    public void runTask(){
+        for (int i = 0;i<10;i++){
+            threadPoll.execute(new ThreadPoolTask("task"+i,latch));
+        }
+        try {
+            latch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        threadPoll.shutdownNow();
+    }
+
+    public static void main(String[] args) {
+        ThreadPoolEx poolEx = new ThreadPoolEx();
+        poolEx.runTask();
+    }
+
 }
