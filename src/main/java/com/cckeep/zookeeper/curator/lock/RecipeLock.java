@@ -13,7 +13,7 @@ import java.util.concurrent.CountDownLatch;
  */
 public class RecipeLock {
 
-    public static String lockPath = "curator_lock";
+    public static String lockPath = "/curator_lock";
 
     final static CuratorFramework client = CuratorFrameworkFactory.builder().connectString("140.143.226.177:2181")
                                                 .retryPolicy(new ExponentialBackoffRetry(1000,3)).build();
@@ -27,8 +27,17 @@ public class RecipeLock {
                 @Override
                 public void run() {
                     try {
+                        try {
+                            lock.acquire();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        Thread.sleep(10000);
                         downLatch.await();
+                        lock.release();
                     } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                     System.out.println(LocalDateTime.now().getNano());
