@@ -1,9 +1,6 @@
 package com.cckeep.jdk.classloader;
 
 
-import sun.misc.Launcher;
-
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,8 +15,8 @@ public class LoaderTest {
 
 
         MyClassLoader classLoader = new MyClassLoader();
-        //<?> aClass = Class.forName("com.cckeep.jdk.classloader.Person", true, classLoader);
-        Class<?> aClass = classLoader.findClass("com.cckeep.jdk.classloader.Person");
+        //<?> aClass = Class.forName("Person", true, classLoader);
+        Class<?> aClass = classLoader.findClass("Person");
         Object o = aClass.newInstance();
         System.out.println(o);
         System.out.println(o.getClass().getClassLoader());
