@@ -11,6 +11,7 @@
     <modules>
         <module>esexample</module>
         <module>simple-practise</module>
+        <module>spring-prictise</module>
     </modules>
 
     <dependencies>
