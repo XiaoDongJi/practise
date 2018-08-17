@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>esexample</module>
+        <module>es-example</module>
         <module>simple-practise</module>
         <module>spring-prictise</module>
     </modules>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
-            <version>4.0.56.Final</version>
+            <version>4.1.6.Final</version>
             <scope>compile</scope>
         </dependency>
 

@@ -41,6 +41,7 @@ public class TimeServer {
 	    ServerBootstrap b = new ServerBootstrap();
 	    b.group(bossGroup, workerGroup)
 		    .channel(NioServerSocketChannel.class)
+			.childOption(ChannelOption.TCP_NODELAY,true)
 		    .option(ChannelOption.SO_BACKLOG, 1024)
 		    .childHandler(new ChildChannelHandler());
 	    // 绑定端口，同步等待成功
