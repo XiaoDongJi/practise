@@ -19,6 +19,8 @@ public class SortTest {
         a.add(7);
         a.add(2);
         System.out.println(a);
+String str = "BJZD091864457Z";
+        System.out.println(str.substring(str.length() - 1));;
 
     }
 

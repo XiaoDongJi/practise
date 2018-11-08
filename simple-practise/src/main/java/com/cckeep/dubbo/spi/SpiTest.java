@@ -12,7 +12,7 @@ public class SpiTest {
 
     public static void main(String[] args) {
         Map<String,String> paramMap = new HashMap<>();
-        paramMap.put("who","woman");
+        paramMap.put("who","man");
         URL url = new URL("dubbo","127.0.0.1",8080,paramMap);
         Human adaptiveExtension = ExtensionLoader.getExtensionLoader(Human.class).getAdaptiveExtension();
         adaptiveExtension.say(url);
