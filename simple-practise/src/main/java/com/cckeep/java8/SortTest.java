@@ -20,6 +20,8 @@ public class SortTest {
         a.add(2);
         System.out.println(a);
 
+        char m = 'c';
+        if (m == 'c'){}
     }
 
 }
