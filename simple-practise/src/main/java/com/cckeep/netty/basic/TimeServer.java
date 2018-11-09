@@ -60,6 +60,7 @@ public class TimeServer {
 	@Override
 	protected void initChannel(SocketChannel arg0) throws Exception {
 	    arg0.pipeline().addLast(new TimeServerHandler());
+	    arg0.pipeline().addLast(new OutBoundHandlerA());
 	}
 
     }
