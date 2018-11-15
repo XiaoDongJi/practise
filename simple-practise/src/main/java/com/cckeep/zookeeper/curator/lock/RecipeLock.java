@@ -15,7 +15,7 @@ public class RecipeLock {
 
     public static String lockPath = "/curator_lock";
 
-    final static CuratorFramework client = CuratorFrameworkFactory.builder().connectString("140.143.226.177:2181")
+    final static CuratorFramework client = CuratorFrameworkFactory.builder().connectString("127.0.0.1:2181")
                                                 .retryPolicy(new ExponentialBackoffRetry(1000,3)).build();
 
     public static void main(String[] args) {
