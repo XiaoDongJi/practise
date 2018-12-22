@@ -22,6 +22,8 @@ public class SortTest {
 String str = "BJZD091864457Z";
         System.out.println(str.substring(str.length() - 1));;
 
+        char m = 'c';
+        if (m == 'c'){}
     }
 
 }
