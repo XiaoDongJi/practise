@@ -11,12 +11,15 @@ public class ListenerTest {
     public static void main(String[] args) throws InterruptedException {
         String path = "/keep";
         ZkClient zkClient = new ZkClient("127.0.0.1:2181", 500);
+
+
         zkClient.subscribeChildChanges(path, new IZkChildListener() {
             @Override
             public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
                 System.out.println("notify:"+parentPath+",childrens:"+currentChilds);
             }
         });
+
 
         zkClient.subscribeStateChanges(new IZkStateListener() {
             @Override
@@ -37,7 +40,7 @@ public class ListenerTest {
                 System.out.println("session expired");
             }
         });
-        zkClient.createPersistent(path);
+      // zkClient.createPersistent(path);
         zkClient.createEphemeral(path+"/c1",1);
 
 
