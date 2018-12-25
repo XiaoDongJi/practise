@@ -15,12 +15,16 @@ public class SendDirect {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
         factory.setPort(5672);
+
         try (Connection connection = factory.newConnection();
              Channel channel = connection.createChannel()) {
+
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-            System.out.println(" [x] Sent '" + message + "'");
+            for (int i = 0; i<10000;i++){
+                String message = "Hello World! " + i;
+                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+                System.out.println(" [x] Sent '" + message + "'");
+            }
 
         }
 
