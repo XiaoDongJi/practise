@@ -12,6 +12,7 @@
         <module>es-example</module>
         <module>simple-practise</module>
         <module>spring-prictise</module>
+        <module>leetcode</module>
     </modules>
 
     <dependencies>
