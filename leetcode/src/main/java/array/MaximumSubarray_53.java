@@ -80,18 +80,19 @@ public class MaximumSubarray_53 {
 
     }
 
+
+    /**
+     * 连续的和相加   查看和比当前值比较大于还是小于 如果是大于 则从新当前值开始
+     * @param nums
+     * @return
+     */
     public static int maxSubArray(int[] nums) {
-        int n = nums.length;
-        int[] dp = new int[n];//dp[i] means the maximum subarray ending with A[i];
-        dp[0] = nums[0];
-        int max = dp[0];
-
-        for(int i = 1; i < n; i++){
-            dp[i] = nums[i] + (dp[i - 1] > 0 ? dp[i - 1] : 0);
-            max = Math.max(max, dp[i]);
+        int maxSoFar=nums[0], maxEndingHere=nums[0];
+        for (int i=1;i<nums.length;++i){
+            maxEndingHere= Math.max(maxEndingHere+nums[i],nums[i]);
+            maxSoFar=Math.max(maxSoFar, maxEndingHere);
         }
-
-        return max;
+        return maxSoFar;
     }
 
 }
