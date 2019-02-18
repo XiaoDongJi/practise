@@ -13,6 +13,7 @@
         <module>simple-practise</module>
         <module>spring-prictise</module>
         <module>leetcode</module>
+        <module>mq-pracitse</module>
     </modules>
 
     <dependencies>

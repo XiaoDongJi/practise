@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.cckeep</groupId>
-    <artifactId>rabbitmq-pracitse</artifactId>
+    <artifactId>mq-pracitse</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>rabbitmq-pracitse</name>
+    <name>mq-pracitse</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -35,9 +35,33 @@
             <artifactId>amqp-client</artifactId>
             <version>5.4.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.0.1</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
-
-
 
     <build>
         <plugins>
