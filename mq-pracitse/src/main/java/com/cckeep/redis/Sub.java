@@ -6,7 +6,11 @@ import redis.clients.jedis.JedisPubSub;
 
 public class Sub {
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("10.30.127.14",6379);
+        Jedis jedis = new Jedis("192.168.199.239",6379);
+
+        String bbb = jedis.lpop("bbb");
+        System.out.println(bbb);
+
 
         jedis.subscribe(new JedisPubSub(){
             @Override

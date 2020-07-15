@@ -4,7 +4,7 @@ import redis.clients.jedis.Jedis;
 
 public class Publish {
     public static void main(String[] args) {
-        Jedis jedis = new Jedis("10.30.127.14",6379);
+        Jedis jedis = new Jedis("192.168.199.239",6379);
 
 
         jedis.set("foo", "bar");
@@ -16,9 +16,11 @@ public class Publish {
         }
         jedis.shutdown();*/
 
+        jedis.lpush("bbb","11","22");
+
         Long publish = jedis.publish("aaa", "ccc");
         System.out.println(publish);
-
+        jedis.shutdown();
 
     }
 
