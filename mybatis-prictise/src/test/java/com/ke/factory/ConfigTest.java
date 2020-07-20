@@ -40,6 +40,7 @@ public class ConfigTest {
     public void getById(){
         RoleMapper mapper = sqlSession.getMapper(RoleMapper.class);
         Role role = mapper.getRole(1L);
+        mapper.getRole(1L);
         System.out.println(role);
         Assertions.assertNotNull(role);
     }
