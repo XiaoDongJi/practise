@@ -6,6 +6,7 @@ import org.apache.hadoop.hbase.HColumnDescriptor;
 import org.apache.hadoop.hbase.HTableDescriptor;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.*;
+import org.apache.hadoop.hbase.filter.*;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -70,10 +71,10 @@ public class HbaseConnTest {
     @Test
     public void insert() throws IOException {
         Table myTable = connection.getTable(TableName.valueOf("MyTable"));
-        Put put = new Put("rowkey1".getBytes());
-        put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("name"),Bytes.toBytes("小花"));
-        put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("type"),Bytes.toBytes("dog"));
-        put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("age"),Bytes.toBytes("20"));
+        Put put = new Put("rowkey2".getBytes());
+        put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("name"),Bytes.toBytes("小黄"));
+        put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("type"),Bytes.toBytes("cat"));
+        put.addColumn(Bytes.toBytes("f1"),Bytes.toBytes("age"),Bytes.toBytes("30"));
         myTable.put(put);
     }
 
@@ -85,6 +86,51 @@ public class HbaseConnTest {
         System.out.println(result.getValue(Bytes.toBytes("f1"),Bytes.toBytes("name")));
         Assertions.assertNotNull(result);
     }
+
+    @Test
+    public void getScanner() throws IOException {
+        Table myTable = connection.getTable(TableName.valueOf("MyTable"));
+        Scan scan = new Scan();
+        scan.setCaching(1000);
+        ResultScanner results = myTable.getScanner(scan);
+        results.forEach(a ->{
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("name"))));
+        });
+    }
+
+    @Test
+    public void filter() throws IOException {
+        RowFilter rowFilter = new RowFilter(CompareFilter.CompareOp.EQUAL, new BinaryComparator(Bytes.toBytes("rowkey1")));
+        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL, Arrays.asList(rowFilter));
+        Table myTable = connection.getTable(TableName.valueOf("MyTable"));
+        Scan scan = new Scan();
+        scan.setCaching(1000);
+        scan.setFilter(filterList);
+        ResultScanner results = myTable.getScanner(scan);
+        results.forEach(a ->{
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("name"))));
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("type"))));
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("age"))));
+        });
+    }
+
+    @Test
+    public void prefixFilter() throws IOException {
+        PrefixFilter prefixFilter = new PrefixFilter(Bytes.toBytes("rowkey1"));
+        FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL, Arrays.asList(prefixFilter));
+        Table myTable = connection.getTable(TableName.valueOf("MyTable"));
+        Scan scan = new Scan();
+        scan.setCaching(1000);
+        scan.setFilter(filterList);
+        ResultScanner results = myTable.getScanner(scan);
+        results.forEach(a ->{
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("name"))));
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("type"))));
+            System.out.println(Bytes.toString(a.getValue(Bytes.toBytes("f1"),Bytes.toBytes("age"))));
+        });
+    }
+
+
 
 
 }
