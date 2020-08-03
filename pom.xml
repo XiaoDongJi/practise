@@ -17,6 +17,7 @@
         <module>eventbus</module>
         <module>mybatis-prictise</module>
         <module>hbase-practise</module>
+        <module>jdk-practise</module>
     </modules>
 
     <properties>

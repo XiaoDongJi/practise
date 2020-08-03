@@ -4,7 +4,8 @@ public class MyTest {
 
     public static void main(String[] args) {
 
-        System.out.println(121 % 10);
+        System.out.println(new Integer(1) == 1);
+
 
     }
 }
