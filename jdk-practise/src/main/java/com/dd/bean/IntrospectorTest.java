@@ -23,11 +23,13 @@ public class IntrospectorTest {
         PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
 
         for (PropertyDescriptor propertyDescriptor : propertyDescriptors){
+            Method readMethod = propertyDescriptor.getReadMethod();
             Method writeMethod = propertyDescriptor.getWriteMethod();
             if (writeMethod == null){
                 continue;
             }
             int parameterCount = writeMethod.getParameterCount();
+            Class<?> declaringClass = writeMethod.getDeclaringClass();
             if (parameterCount == 1){
                 Class<?> parameterType = writeMethod.getParameterTypes()[0];
                 if (parameterType == int.class){
