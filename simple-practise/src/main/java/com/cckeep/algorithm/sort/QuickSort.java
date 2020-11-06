@@ -26,38 +26,38 @@ public class QuickSort {
     }
 
 
-    private static void sort(int[] arr, int begin, int end) {
-        if (begin > end){
+    private static void sort(int[] arr, int start, int end) {
+        if (start >= end){
             return;
         }
-        int low = begin, hight = end;
+        int mid = partition(arr,start,end);
 
-        // 将第一个值作为快排序的分界值
-        int pivot = arr[low];
-        while (low < hight) {
-            // 如果两个游标没有交集，或者后面一直大于或等于分界值就一直向前移动
-            while (low < hight && arr[hight] >= pivot) {
-                --hight;
-            }
-            //高位赋值给低位
-            arr[low] = arr[hight];
-            // 如果两个游标没有交集，或者前面是小于或等于分界值，就一直向后头移动
-            while (low < hight && arr[low] <= pivot) {
-                ++low;
-            }
-            //高位赋值给低位
-            arr[hight] = arr[low];
-        }
-
-        // 将临界值赋值给游标的交集的地方
-        arr[low] = pivot;
         // 递归排序游标的左边
-        sort(arr, begin, hight - 1);
+        sort(arr, start, mid - 1);
 
         // 递归排序游标的右边
-        sort(arr, low + 1, end);
+        sort(arr, mid + 1, end);
 
+    }
 
+    private static int partition(int[] arr,int start,int end){
+        // 将第一个值作为快排序的分界值
+        int pivot = arr[end];
+        int i = start;
+        for(int j = start;j < end; j++){
+            if(arr[j] < pivot){
+                swap(arr,i,j);
+                i++;
+            }
+        }
+        swap(arr,i,end);
+        return i;
+    }
+
+    private static void swap(int[] arr,int i,int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 
 

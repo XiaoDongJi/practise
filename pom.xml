@@ -18,6 +18,7 @@
         <module>mybatis-prictise</module>
         <module>hbase-practise</module>
         <module>jdk-practise</module>
+        <module>algorithm</module>
     </modules>
 
     <properties>
