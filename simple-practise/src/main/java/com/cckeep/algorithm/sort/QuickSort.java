@@ -18,7 +18,7 @@ public class QuickSort {
 
         int[] arr = {2,22,4,25,6,16};
 
-
+        System.out.println("排序前：arr=" + Arrays.toString(arr));
         sort(arr,0,arr.length - 1);
 
         System.out.println("排序后：arr=" + Arrays.toString(arr));
