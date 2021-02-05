@@ -30,7 +30,7 @@ public class QuickSort {
         if (start >= end){
             return;
         }
-        int mid = partition(arr,start,end);
+        int mid = pardition(arr,start,end);
 
         // 递归排序游标的左边
         sort(arr, start, mid - 1);
@@ -40,7 +40,7 @@ public class QuickSort {
 
     }
 
-    private static int partition(int[] arr,int start,int end){
+    private static int pardition(int[] arr,int start,int end){
         // 将第一个值作为快排序的分界值
         int pivot = arr[end];
         int i = start;

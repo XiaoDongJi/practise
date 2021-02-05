@@ -1,14 +1,10 @@
 package com.cckeep.leetcode.algorithms;
 
-/**
- * @author: jixd
- * @date: 2020/11/11 4:43 下午
- */
 public class Solution31 {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,2,3,6,5,4};
-        new Solution31().nextPermutation(nums);
+        int[] arr = new int[]{4,5,2,6,3,1};
+        new Solution31().nextPermutation(arr);
     }
 
     public void nextPermutation(int[] nums) {
@@ -40,6 +36,5 @@ public class Solution31 {
             right--;
         }
     }
-
 
 }
