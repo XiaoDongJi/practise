@@ -1,4 +1,4 @@
-package com.cckeep.leetcode.offer;
+package com.cckeep.leetcode.algorithms;
 
 /**
  * 难
