@@ -36,5 +36,4 @@ public class Solution31 {
             right--;
         }
     }
-
 }
